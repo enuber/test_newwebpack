@@ -1,7 +1,11 @@
-import '../scss/main.scss';
+//import '../scss/main.scss'; // you have defined already this SCSS file in HTML, then you don't need it load in JS
+
 import Cookies from 'js-cookie';
 import { Fancybox } from '@fancyapps/ui/dist/fancybox/fancybox.esm.js';
+
+// tip: you can import this CSS file in main.scss or directly in HTML, likely you do it for @styles/main.scss
 import '@fancyapps/ui/dist/fancybox/fancybox.css';
+
 // import ogImg from '../img/og_img.jpg';
 // import usRP from '../img/footer/esrb_sonic.svg';
 // import auRP from '../img/footer/g_au_rating.jpg';

@@ -11,12 +11,13 @@
     <!-- <link rel="stylesheet" href="https://use.typekit.net/oqh6ihm.css"> -->
     <link href="@styles/main.scss" rel="stylesheet" />
 
-    <!-- JS -->
-    <script src="../node_modules/js-cookie/index.js"></script>
+    <!-- JS: DON'T use the path to node_modules, the plugin resolves the module file automatically -->
+    <!-- you have imported already the `js-cookie` in @scripts/language_object.js -->
+    <!--<script DISABLE-src="js-cookie"></script> -->
     <script src="@scripts/modernizr.js"></script>
     <script src="@scripts/siema.min.js"></script>
-    <script src="@scripts/purchaselinks_object.js"></script>
-    <script src="@scripts/custom_select.js"></script>
+    <script src="@scripts/purchaselinks_object.js" defer></script>
+    <script src="@scripts/custom_select.js" defer></script>
   </head>
   <body>
     <header class="navigation">
