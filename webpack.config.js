@@ -46,7 +46,7 @@ module.exports = {
         },
       },
       {
-        test: /\.(scss)$/,
+        test: /\.(s?css)$/, // <= match SCSS and CSS, because you load the @fancyapps/ui/dist/fancybox/fancybox.css CSS file
         use: ['css-loader', 'sass-loader'],
       },
       {
