@@ -1,0 +1,29 @@
+{
+  "name": "starter_kit",
+  "description": "HTML / Sass / JavaScript / Webpack",
+  "version": "0.0.1",
+  "stackblitz": {
+    "startCommand": "npm start"
+  },
+  "scripts": {
+    "start": "webpack serve",
+    "build": "webpack build --mode=production",
+    "test": "npm run build"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.5",
+    "@babel/preset-env": "^7.15.4",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^6.10.0",
+    "html-bundler-webpack-plugin": "^3.5.0",
+    "sass": "^1.71.0",
+    "sass-loader": "^14.1.1",
+    "webpack": "^5.90.3",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.0.2"
+  },
+  "dependencies": {
+    "@fancyapps/ui": "^5.0.6",
+    "js-cookie": "^3.0.1"
+  }
+}

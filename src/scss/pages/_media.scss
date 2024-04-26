@@ -1,0 +1,67 @@
+.media {
+    text-align: center;
+    position: relative;
+    scroll-margin-top: 80px;
+
+    &:after {
+        content: "";
+        background: url(../img/common/dots_orange.png) repeat-x, #ffe600;
+        height: 100%;
+        width: 100%;
+        display: block;
+        position: absolute;
+        z-index: -2;
+        bottom: 0;
+        left: 0;
+        background-size: auto 85%;
+        background-position: bottom;
+    }
+
+    &__wrapper {
+        padding: 10rem 0;
+        text-align: center;
+        position: relative;
+        max-width: 100rem;
+        margin: 0 auto;
+
+        &--extras {
+            &:after {
+                content: "";
+                background: url(../img/media/media_right.png) no-repeat;
+                height: 100%;
+                width: 32%;
+                max-width: 868px;
+                display: none;
+                position: absolute;
+                z-index: -1;
+                top: 13%;
+                right: -8%;
+                background-size: 100%;
+                background-position: top;
+
+                @include respond(phone) {
+                    display: block;
+                } 
+            }
+
+            &:before {
+                content: "";
+                background: url(../img/media/media_left.png) no-repeat;
+                height: 100%;
+                width: 58%;
+                max-width: 910px;
+                display: none;
+                position: absolute;
+                z-index: -1;
+                top: -15%;
+                left: -26%;
+                background-size: 100%;
+                background-position: top;
+
+                @include respond(phone) {
+                    display: block;
+                } 
+            }
+        }
+    }
+}
