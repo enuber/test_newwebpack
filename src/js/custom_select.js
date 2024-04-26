@@ -1,4 +1,5 @@
 import Cookies from 'js-cookie';
+
 import {
   purchaseLinks as links,
   editionsList as editions,
@@ -16,39 +17,39 @@ const editionsInfo = edition;
 //variables list
 const customSelectEdition = document.querySelector('.edition .custom__select');
 const selectBtnEdition = document.querySelector(
-  '.edition .custom__select__button',
+  '.edition .custom__select__button'
 );
 const selectedValueEdition = document.querySelector(
-  '.edition .custom__select__value',
+  '.edition .custom__select__value'
 );
 const optionsListEdition = document.querySelectorAll(
-  '.edition .custom__select__dropdown li',
+  '.edition .custom__select__dropdown li'
 );
 
 const customSelectPlatform = document.querySelector(
-  '.platform .custom__select',
+  '.platform .custom__select'
 );
 const selectBtnPlatform = document.querySelector(
-  '.platform .custom__select__button',
+  '.platform .custom__select__button'
 );
 const selectedValuePlatform = document.querySelector(
-  '.platform .custom__select__value',
+  '.platform .custom__select__value'
 );
 const optionsListPlatform = document.querySelectorAll(
-  '.platform .custom__select__dropdown li',
+  '.platform .custom__select__dropdown li'
 );
 
 const customSelectRetailers = document.querySelector(
-  '.retailers .custom__select',
+  '.retailers .custom__select'
 );
 const selectBtnRetailers = document.querySelector(
-  '.retailers .custom__select__button',
+  '.retailers .custom__select__button'
 );
 const selectedValueRetailers = document.querySelector(
-  '.retailers .custom__select__value',
+  '.retailers .custom__select__value'
 );
 const optionsListRetailers = document.querySelectorAll(
-  '.retailers .custom__select__dropdown li',
+  '.retailers .custom__select__dropdown li'
 );
 
 //setup/change glamshot and text based on edition chosen
@@ -62,11 +63,11 @@ const updateGlamAndText = () => {
   editionsInfo[lang][editionType].title
     ? (title.innerHTML = editionsInfo[lang][editionType].title)
     : (title.innerHTML = '');
-  glamshotImages.forEach(glamshot => {
+  glamshotImages.forEach((glamshot) => {
     glamshot.src = editionsInfo[lang][editionType].image;
   });
   if (editionsInfo[lang][editionType].items.length > 0) {
-    editionsInfo[lang][editionType].items.forEach(item => {
+    editionsInfo[lang][editionType].items.forEach((item) => {
       itemsToPlace += `
         <li><strong>${item.title}</strong> ${item.desc}</li>
       `;
@@ -122,7 +123,7 @@ const purchaseBtns = () => {
     purchaseHTMLDigital;
   if (edition.includes('physical')) {
     const retailerList = purchaseLinks[lang][platform]['physical'];
-    const index = retailerList.findIndex(obj => obj.name === retailer);
+    const index = retailerList.findIndex((obj) => obj.name === retailer);
     if (retailerList.length !== 0 && index !== -1) {
       const physicalHREF =
         purchaseLinks[lang][platform]['physical'][index].link;
@@ -158,7 +159,7 @@ const purchaseBtns = () => {
 };
 
 //handles retailer list showing up and whether button next to platforms shows up if digital edition
-const showHideBtns = edition => {
+const showHideBtns = (edition) => {
   if (edition.includes('digital')) {
     document.querySelector('.retailers').classList.add('retailers__hidden');
     document
@@ -175,7 +176,7 @@ const showHideBtns = edition => {
 //reset so when switching editions, goes back to first platform
 const resetPlatform = () => {
   const editionType = Cookies.get('edition');
-  platformsList.forEach(platform => {
+  platformsList.forEach((platform) => {
     document
       .getElementById(platform.platform_id)
       .closest('li')
@@ -199,7 +200,7 @@ const resetPlatform = () => {
   const platformCookie = platformsList[0].platform_cookie;
   Cookies.set('platform', platformCookie);
   selectedValuePlatform.textContent = document.querySelector(
-    '.platform .custom__select .custom__select__dropdown li label',
+    '.platform .custom__select .custom__select__dropdown li label'
   ).textContent;
 };
 
@@ -215,7 +216,7 @@ const selectBtns = (eventTarget, btn) => {
       'aria-expanded',
       `selectBtn${btnCapitalize}.getAttribute('aria-expanded')` === 'true'
         ? 'false'
-        : 'true',
+        : 'true'
     );
   }
   //using optional chaining here to make sure that if it's the button itself getting clicked an error doesn't get thrown.
@@ -245,7 +246,7 @@ const selectBtns = (eventTarget, btn) => {
 
 function closeAllSelect(evt) {
   const customSelectMenu = document.querySelectorAll('.custom__select');
-  customSelectMenu.forEach(menu => {
+  customSelectMenu.forEach((menu) => {
     if (!menu.contains(evt.target)) {
       menu.classList.remove('active');
     }
@@ -254,10 +255,10 @@ function closeAllSelect(evt) {
 
 function newOptionsHandler() {
   const checkOption = document.querySelectorAll(
-    '.retailers .custom__select__dropdown li',
+    '.retailers .custom__select__dropdown li'
   );
 
-  checkOption.forEach(option => {
+  checkOption.forEach((option) => {
     function handler(e) {
       let fromOptionList = e.target.closest('aside').classList[0];
       fromOptionList =
@@ -283,21 +284,21 @@ function newOptionsHandler() {
 //sets up handlers, so deals with what happens when the button is clicked, or an option from the menu is chosen
 function handlerSetup() {
   const checkTarget = document.querySelectorAll(
-    '.edition .custom__select,.platform .custom__select, .retailers .custom__select',
+    '.edition .custom__select,.platform .custom__select, .retailers .custom__select'
   );
 
   const checkOption = document.querySelectorAll(
-    '.edition .custom__select__dropdown li,.platform .custom__select__dropdown li, .retailers .custom__select__dropdown li',
+    '.edition .custom__select__dropdown li,.platform .custom__select__dropdown li, .retailers .custom__select__dropdown li'
   );
 
-  checkTarget.forEach(item => {
+  checkTarget.forEach((item) => {
     function handler(e) {
       selectBtns(e.target, e.target.closest('aside').classList[0]);
     }
     item.addEventListener('click', handler);
   });
 
-  checkOption.forEach(option => {
+  checkOption.forEach((option) => {
     function handler(e) {
       let fromOptionList = e.target.closest('aside').classList[0];
       fromOptionList =
@@ -328,7 +329,7 @@ const setUpEditions = () => {
   const lang = Cookies.get('lang');
   let editionsHTML = '';
   if (editionsList[lang].length !== 0) {
-    editionsList[lang].forEach(edition => {
+    editionsList[lang].forEach((edition) => {
       editionsHTML += `
         <li role="option">
             <input type="radio" id="${edition.edition_id}" name="edition" />
@@ -342,7 +343,7 @@ const setUpEditions = () => {
     Cookies.set('edition', editionType);
     showHideBtns(editionType);
     selectedValueEdition.textContent = document.querySelector(
-      '.edition .custom__select .custom__select__dropdown li label',
+      '.edition .custom__select .custom__select__dropdown li label'
     ).textContent;
   }
 };
@@ -351,7 +352,7 @@ const setUpEditions = () => {
 const setUpPlatforms = () => {
   let platformsHTML = '';
   if (platformsList.length !== 0) {
-    platformsList.forEach(platform => {
+    platformsList.forEach((platform) => {
       platformsHTML += `
           <li role="option">
               <input type="radio" id="${platform.platform_id}" name="platform" class="${platform.platform_cookie}" />
@@ -378,7 +379,7 @@ const setUpRetailers = () => {
     const retailerList = purchaseLinks[lang][platform].physical;
     //NOTE: need to add the else statment here to deal  with coming soon if retailer links aren't available
     if (retailerList.length !== 0) {
-      retailerList.forEach(retailer => {
+      retailerList.forEach((retailer) => {
         const condensedName = retailer.name.toLowerCase().replace(' ', '_');
         retailersHTML += `
         <li role="option">
@@ -395,11 +396,11 @@ const setUpRetailers = () => {
       retailersHTML;
     if (
       document.querySelector(
-        '.retailers .custom__select .custom__select__dropdown li label',
+        '.retailers .custom__select .custom__select__dropdown li label'
       ) !== null
     ) {
       selectedValueRetailers.textContent = document.querySelector(
-        '.retailers .custom__select .custom__select__dropdown li label',
+        '.retailers .custom__select .custom__select__dropdown li label'
       ).textContent;
     }
   }

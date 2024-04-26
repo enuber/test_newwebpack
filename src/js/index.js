@@ -1,13 +1,6 @@
-import '../scss/main.scss';
 import Cookies from 'js-cookie';
 import { Fancybox } from '@fancyapps/ui/dist/fancybox/fancybox.esm.js';
 import '@fancyapps/ui/dist/fancybox/fancybox.css';
-// import ogImg from '../img/og_img.jpg';
-// import usRP from '../img/footer/esrb_sonic.svg';
-// import auRP from '../img/footer/g_au_rating.jpg';
-// import uskRP from '../img/footer/usk_6.png';
-// import brRP from '../img/footer/br_rating_L.png';
-// import pegi from '../img/footer/pegi_3.jpg';
 
 Fancybox.bind('[data-fancybox]', {
   // Your custom options
@@ -23,9 +16,9 @@ function fallback(video) {
 
 // cookie set up when page loads. this will allow you to go directly to a FIGS page with index.html?lang="yourlangcode" and be able to have the correct language show up/////
 //  will check for any name after a query string in the URL. Here using it to find the language if it's set.
-const urlParam = name => {
+const urlParam = (name) => {
   const results = new RegExp('[?&]' + name + '=([^&#]*)').exec(
-    window.location.href,
+    window.location.href
   );
   if (results == null) {
     return null;
@@ -70,7 +63,7 @@ const isWebpAvailable = document.querySelector('html');
 if (isWebpAvailable.classList.contains('webp')) {
   let singleSrc;
   let multilineSrc;
-  document.querySelectorAll('[data-fancybox="media"]').forEach(elem => {
+  document.querySelectorAll('[data-fancybox="media"]').forEach((elem) => {
     multilineSrc = elem.dataset.srcset.replace(/jpg/g, 'webp').trim();
     singleSrc = elem.dataset.src.replace('jpg', 'webp');
     elem.dataset.srcset = multilineSrc;
@@ -80,7 +73,7 @@ if (isWebpAvailable.classList.contains('webp')) {
 
 const activeNav = document.querySelector('.navigation__active');
 
-activeNav.addEventListener('click', e => {
+activeNav.addEventListener('click', (e) => {
   e.preventDefault();
 });
 

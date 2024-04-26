@@ -1,4 +1,3 @@
-import '../scss/main.scss';
 import dde from '../img/purchase/digital_deluxe.jpg';
 import dse from '../img/purchase/digital_standard.jpg';
 import ple from '../img/purchase/physical_launch.jpg';

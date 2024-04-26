@@ -3,10 +3,20 @@ const HtmlBundlerPlugin = require('html-bundler-webpack-plugin');
 
 module.exports = {
   mode: 'development',
+
   output: {
     path: path.resolve(__dirname, 'dist'),
     clean: true,
+    assetModuleFilename: (pathData) => {
+      const filepath = path
+        .dirname(pathData.filename)
+        .split('/')
+        .slice(1)
+        .join('/');
+      return `${filepath}/[name][ext][query]`;
+    },
   },
+
   resolve: {
     alias: {
       '@scripts': path.join(__dirname, 'src/js'),
@@ -17,10 +27,10 @@ module.exports = {
 
   plugins: [
     new HtmlBundlerPlugin({
+      // define templates here
       entry: {
-        // define templates here
-        index: 'src/index.html',
-        products: 'src/products.html',
+        index: 'src/index.html', // => dist/index.html
+        products: 'src/products.html', // => dist/about.html
       },
       js: {
         // output filename of compiled JavaScript
@@ -46,25 +56,35 @@ module.exports = {
         },
       },
       {
-        test: /\.(scss)$/,
-        use: ['css-loader', 'sass-loader'],
+        test: /\.(s?css)$/,
+        use: [
+          { loader: 'css-loader', options: { sourceMap: true } },
+          { loader: 'postcss-loader', options: { sourceMap: true } },
+          { loader: 'sass-loader', options: { sourceMap: true } },
+        ],
       },
       {
         test: /\.(ico|png|jp?g|svg|gif|webp)/,
-        type: 'asset/resource',
-        generator: {
-          filename: 'img/[name].[hash:8][ext]',
-        },
+        type: 'asset',
+        // generator: {
+        //   filename: 'img/[name].[hash:8][ext]',
+        // },
         parser: {
           dataUrlCondition: {
             maxSize: 2 * 1024, // inline images < 2 KB
           },
         },
       },
+      {
+        test: /\.(woff|woff2)$/,
+        use: {
+          loader: 'url-loader',
+        },
+      },
     ],
   },
 
-  // enable live reload
+  // enable HMR with live reload
   devServer: {
     static: path.resolve(__dirname, 'dist'),
     watchFiles: {
